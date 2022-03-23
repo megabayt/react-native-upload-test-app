@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Provider } from 'react-redux';
+import Toast from 'react-native-toast-message';
 
 import { FileInfo } from './FileInfo';
 import { FilePickerBtn } from './FilePickerBtn';
@@ -17,6 +18,7 @@ export const App = () => {
         <Progress />
         <UploadBtn />
       </Wrapper>
+      <Toast />
     </Provider>
   );
 }

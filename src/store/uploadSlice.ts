@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import RNFetchBlob from 'rn-fetch-blob';
+import Toast from 'react-native-toast-message';
 import { RootState } from './store';
+import { pickerSlice } from './pickerSlice';
 
 interface Response {
   Name: string;
@@ -14,7 +16,7 @@ export const upload = createAsyncThunk<Response>(
     thunkAPI.dispatch(uploaderSlice.actions.updateProgress(0));
     const { picker: { file } } = thunkAPI.getState() as RootState;
     if (!file) {
-      return reject('no file!');
+      return reject('No file!');
     }
     const cleanUri = file.uri.replace(/(RNFetchBlob-)?file:\/\//g, '');
     const wrappedUri = RNFetchBlob.wrap(cleanUri);
@@ -30,6 +32,7 @@ export const upload = createAsyncThunk<Response>(
     RNFetchBlob.fetch('POST', 'https://ipfs-dev.ternoa.dev/api/v0/add', headers, body)
       .uploadProgress((progress) => {
         const size = file.size ?? 0;
+        thunkAPI.dispatch(pickerSlice.actions.resetPickerState());
         thunkAPI.dispatch(uploaderSlice.actions.updateProgress(Math.floor(progress / size * 100)));
       })
       .then((resp) => {
@@ -58,6 +61,16 @@ export const uploaderSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(upload.fulfilled, (state, action) => {
       state.uploadResult = action.payload;
+      Toast.show({
+        type: 'success',
+        text1: 'File uploaded successfully',
+      });
+    });
+    builder.addCase(upload.rejected, (state, action) => {
+      Toast.show({
+        type: 'error',
+        text1: action.error.message,
+      });
     });
   },
 });
