@@ -1,18 +1,23 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { Provider } from 'react-redux';
+
 import { FileInfo } from './FileInfo';
 import { FilePickerBtn } from './FilePickerBtn';
 import { Progress } from './Progress';
 import { UploadBtn } from './UploadBtn';
+import { store } from '../store';
 
 export const App = () => {
   return (
-    <Wrapper>
-      <FileInfo />
-      <FilePickerBtn />
-      <Progress />
-      <UploadBtn />
-    </Wrapper>
+    <Provider store={store}>
+      <Wrapper>
+        <FileInfo />
+        <FilePickerBtn />
+        <Progress />
+        <UploadBtn />
+      </Wrapper>
+    </Provider>
   );
 }
 
