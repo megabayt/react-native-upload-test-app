@@ -11,7 +11,7 @@ export const UploadBtn = () => {
 
   return (
     <Wrapper>
-      <Button title="Upload selected file" onPress={handlePress} />
+      <Button title="Upload selected file" testID="upload-file" onPress={handlePress} />
     </Wrapper>
   );
 };
