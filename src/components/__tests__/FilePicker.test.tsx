@@ -17,7 +17,7 @@ jest.mock('../../store/pickerSlice', () => ({
   pick: jest.fn(),
 }))
 
-describe('file info component', () => {
+describe('file picker component', () => {
   it('should call picker', async () => {
     const wrapper = render(<FilePickerBtn />);
 
