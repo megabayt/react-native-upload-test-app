@@ -7,8 +7,8 @@ export const Progress = () => {
   const progress = useSelector(getUploadProgress);
   return (
     <Wrapper>
-      <Background>
-        <Bar progress={progress} />
+      <Background testID="bar-background">
+        <Bar testID="bar" progress={progress} />
       </Background>
     </Wrapper>
   );

@@ -7,4 +7,12 @@ jest.mock('react-native-toast-message', () => {
   };
 });
 
+jest.mock('rn-fetch-blob', () => ({
+  __esModule: true,
+  default: {
+    wrap: jest.fn(),
+    fetch: jest.fn(),
+  },
+}));
+
 export {};
