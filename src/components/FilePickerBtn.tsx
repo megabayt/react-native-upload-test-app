@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
-import { getPickerResult, pick, pickerSlice } from '../store/pickerSlice';
-import { RootState } from '../store/store';
+import { pick } from '../store/pickerSlice';
 
 export const FilePickerBtn = () => {
   const dispatch = useDispatch();
@@ -12,7 +11,7 @@ export const FilePickerBtn = () => {
 
   return (
     <Wrapper>
-      <Button title="Select file" onPress={handlePress} />
+      <Button title="Select file" testID="select-file" onPress={handlePress} />
     </Wrapper>
   );
 };
