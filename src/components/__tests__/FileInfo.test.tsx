@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render, RenderAPI } from "@testing-library/react-native"
-import configureStore from 'redux-mock-store';
+import configureMockStore from 'redux-mock-store';
 import { FileInfo } from '../FileInfo';
 
-const mockStore = configureStore([]);
+const mockStore = configureMockStore([]);
 
 describe('file info component', () => {
   it('should render empty strings if no file', () => {

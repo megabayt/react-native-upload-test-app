@@ -1,11 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { render, RenderAPI } from "@testing-library/react-native"
-import configureStore from 'redux-mock-store';
-import { FileInfo } from '../FileInfo';
+import { render } from "@testing-library/react-native"
+import configureMockStore from 'redux-mock-store';
 import { Progress } from '../Progress';
 
-const mockStore = configureStore([]);
+const mockStore = configureMockStore([]);
 
 describe('progress bar component', () => {
   it('should be gray if progress equals to 0', () => {
