@@ -3,6 +3,7 @@ import configureMockStore from 'redux-mock-store';
 import DocumentPicker, { DocumentPickerResponse } from 'react-native-document-picker';
 
 import { pick, pickerSlice } from '../pickerSlice';
+import { testPick } from '../../utils/testingHelpers';
 
 const middlewares = [thunk]
 export const mockStore = configureMockStore(middlewares);
@@ -44,11 +45,8 @@ test('should open picker when pick action is called', async () => {
     }
   ];
   const store: any = mockStore({});
-  // mock API returns
-  jest.spyOn(DocumentPicker, 'pick').mockImplementation(() => {
-    return Promise.resolve([file]);
-  });
-  return store.dispatch(pick()).then(() => {
+  
+  return testPick(store, file).then(() => {
     expect(store.getActions().map((action: any) => ({ type: action.type, payload: action.payload })))
       .toEqual(expectedActions)
   })
