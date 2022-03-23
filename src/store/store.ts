@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { pickerSlice } from './pickerSlice';
+import { uploaderSlice } from './uploadSlice';
 
 export const store = configureStore({
   reducer: {
     picker: pickerSlice.reducer,
+    uploader: uploaderSlice.reducer,
   },
 })
 

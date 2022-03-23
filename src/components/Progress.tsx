@@ -1,11 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from "styled-components/native";
+import { getUploadProgress } from '../store/uploadSlice';
 
 export const Progress = () => {
+  const progress = useSelector(getUploadProgress);
   return (
     <Wrapper>
       <Background>
-        <Bar progress={50} />
+        <Bar progress={progress} />
       </Background>
     </Wrapper>
   );
@@ -25,6 +28,6 @@ const Bar = styled.View`
   top: 0px;
   bottom: 0px;
   left: 0px;
-  right: ${({ progress = 0 }: { progress?: number }) => progress}%;
+  right: ${({ progress = 0 }: { progress?: number }) => 100 - progress}%;
   background: #50ab9f;
 `;

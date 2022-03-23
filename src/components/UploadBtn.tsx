@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
+import { upload } from '../store/uploadSlice';
 
 export const UploadBtn = () => {
+  const dispatch = useDispatch();
+  const handlePress = useCallback(() => {
+    dispatch(upload());
+  }, []);
+
   return (
     <Wrapper>
-      <Button title="Upload selected file" />
+      <Button title="Upload selected file" onPress={handlePress} />
     </Wrapper>
   );
 };
