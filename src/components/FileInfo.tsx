@@ -12,9 +12,15 @@ export const FileInfo = () => {
   
   return (
     <Wrapper>
-      <Item numberOfLines={1}>Selected file name: {fileName}</Item>
-      <Item numberOfLines={1}>Selected file path: {filePath}</Item>
-      <Item numberOfLines={1}>Selected file size: {fileSize}</Item>
+      <Item numberOfLines={1} testID="fileName">
+        Selected file name: {fileName}
+      </Item>
+      <Item numberOfLines={1} testID="filePath">
+        Selected file path: {filePath}
+      </Item>
+      <Item numberOfLines={1} testID="fileSize">
+        Selected file size: {fileSize}
+      </Item>
     </Wrapper>
   );
 };
